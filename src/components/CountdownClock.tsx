@@ -521,9 +521,17 @@ const CountdownClock = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
+                <div className="flex flex-col items-center">
                   <label className="block text-lg font-medium mb-4 text-white">Minutes</label>
-                  <div className="flex items-center gap-4">
+                  <Input
+                    type="number"
+                    min="0"
+                    max="59"
+                    value={inputMinutes}
+                    onChange={(e) => setInputMinutes(parseInt(e.target.value) || 0)}
+                    className="text-5xl h-24 bg-gray-700 border-gray-600 text-center text-white"
+                  />
+                  <div className="flex gap-4 mt-4">
                     <Button
                       onClick={() => setInputMinutes(Math.max(0, inputMinutes - 1))}
                       size="lg"
@@ -531,14 +539,6 @@ const CountdownClock = () => {
                     >
                       <Minus className="w-8 h-8" />
                     </Button>
-                    <Input
-                      type="number"
-                      min="0"
-                      max="59"
-                      value={inputMinutes}
-                      onChange={(e) => setInputMinutes(parseInt(e.target.value) || 0)}
-                      className="text-xl h-16 bg-gray-700 border-gray-600 text-center text-white"
-                    />
                     <Button
                       onClick={() => setInputMinutes(Math.min(59, inputMinutes + 1))}
                       size="lg"
@@ -549,9 +549,17 @@ const CountdownClock = () => {
                   </div>
                 </div>
                 
-                <div>
+                <div className="flex flex-col items-center">
                   <label className="block text-lg font-medium mb-4 text-white">Seconds</label>
-                  <div className="flex items-center gap-4">
+                  <Input
+                    type="number"
+                    min="0"
+                    max="59"
+                    value={inputSeconds}
+                    onChange={(e) => setInputSeconds(parseInt(e.target.value) || 0)}
+                    className="text-5xl h-24 bg-gray-700 border-gray-600 text-center text-white"
+                  />
+                  <div className="flex gap-4 mt-4">
                     <Button
                       onClick={() => setInputSeconds(Math.max(0, inputSeconds - 1))}
                       size="lg"
@@ -559,14 +567,6 @@ const CountdownClock = () => {
                     >
                       <Minus className="w-8 h-8" />
                     </Button>
-                    <Input
-                      type="number"
-                      min="0"
-                      max="59"
-                      value={inputSeconds}
-                      onChange={(e) => setInputSeconds(parseInt(e.target.value) || 0)}
-                      className="text-xl h-16 bg-gray-700 border-gray-600 text-center text-white"
-                    />
                     <Button
                       onClick={() => setInputSeconds(Math.min(59, inputSeconds + 1))}
                       size="lg"
@@ -577,9 +577,17 @@ const CountdownClock = () => {
                   </div>
                 </div>
                 
-                <div>
+                <div className="flex flex-col items-center">
                   <label className="block text-lg font-medium mb-4 text-white">Rounds (1-15)</label>
-                  <div className="flex items-center gap-4">
+                  <Input
+                    type="number"
+                    min="1"
+                    max="15"
+                    value={inputRounds}
+                    onChange={(e) => setInputRounds(parseInt(e.target.value) || 1)}
+                    className="text-5xl h-24 bg-gray-700 border-gray-600 text-center text-white"
+                  />
+                  <div className="flex gap-4 mt-4">
                     <Button
                       onClick={() => setInputRounds(Math.max(1, inputRounds - 1))}
                       size="lg"
@@ -587,14 +595,6 @@ const CountdownClock = () => {
                     >
                       <Minus className="w-8 h-8" />
                     </Button>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="15"
-                      value={inputRounds}
-                      onChange={(e) => setInputRounds(parseInt(e.target.value) || 1)}
-                      className="text-xl h-16 bg-gray-700 border-gray-600 text-center text-white"
-                    />
                     <Button
                       onClick={() => setInputRounds(Math.min(15, inputRounds + 1))}
                       size="lg"
