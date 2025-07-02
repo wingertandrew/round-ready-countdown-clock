@@ -15,12 +15,14 @@ interface SettingsTabProps {
   ntpServer: string;
   lastNtpSync: string;
   ntpDrift: number;
+  ntpEnabled: boolean;
   setInputMinutes: (value: number) => void;
   setInputSeconds: (value: number) => void;
   setInputRounds: (value: number) => void;
   setBetweenRoundsEnabled: (enabled: boolean) => void;
   setBetweenRoundsTime: (time: number) => void;
   setNtpServer: (server: string) => void;
+  setNtpEnabled: (enabled: boolean) => void;
   onApplySettings: () => void;
   onSyncWithNTP: () => void;
 }
@@ -41,12 +43,14 @@ const SettingsTab: React.FC<SettingsTabProps> = ({
   ntpServer,
   lastNtpSync,
   ntpDrift,
+  ntpEnabled,
   setInputMinutes,
   setInputSeconds,
   setInputRounds,
   setBetweenRoundsEnabled,
   setBetweenRoundsTime,
   setNtpServer,
+  setNtpEnabled,
   onApplySettings,
   onSyncWithNTP
 }) => {
@@ -164,12 +168,29 @@ const SettingsTab: React.FC<SettingsTabProps> = ({
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2">
+                  <h3 className="text-xl text-white font-semibold">Enable NTP Sync</h3>
+                  <p className="text-gray-300 text-lg">Periodically sync clock with NTP server</p>
+                </div>
+                <Switch
+                  checked={ntpEnabled}
+                  onCheckedChange={setNtpEnabled}
+                  className="scale-150"
+                />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    {ntpOffset !== null ? <Wifi className="w-6 h-6 text-green-400" /> : <WifiOff className="w-6 h-6 text-red-400" />}
+                    {ntpEnabled && ntpOffset !== null ? (
+                      <Wifi className="w-6 h-6 text-green-400" />
+                    ) : (
+                      <WifiOff className="w-6 h-6 text-red-400" />
+                    )}
                     <span className="text-xl text-white">
-                      Status: {ntpOffset !== null ? 'Synchronized' : 'Failed'}
+                      Status:{' '}
+                      {ntpEnabled ? (ntpOffset !== null ? 'Synchronized' : 'Failed') : 'Disabled'}
                     </span>
                   </div>
                   
